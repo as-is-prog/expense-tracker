@@ -29,7 +29,7 @@ Vite + Vue 3 + TypeScript で構築されたシンプルな家計簿アプリケ
 ### 1. プロジェクトのクローン
 
 ```bash
-git clone <リポジトリのURL> # もしGitリポジトリの場合
+git clone https://github.com/as-is-prog/expense-tracker.git
 cd expense-tracker
 ```
 
