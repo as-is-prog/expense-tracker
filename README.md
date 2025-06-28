@@ -1,5 +1,81 @@
-# Vue 3 + TypeScript + Vite
+# 家計簿アプリ (Expense Tracker)
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Gemini CLI のお試しで作成したものです。
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+---
+
+Vite + Vue 3 + TypeScript で構築されたシンプルな家計簿アプリケーションです。支出の記録、一覧表示、削除ができ、Ollama と連携して家計に関するアドバイスを生成する機能も備えています。
+
+データ永続化には IndexedDB を使用しており、将来的に他のストレージに差し替えやすいように設計されています。
+
+## 機能
+
+- **支出の記録**: 日付、カテゴリ、金額、メモを記録できます。
+- **支出の一覧表示**: 記録された支出を一覧で確認できます。
+- **支出の削除**: 不要な支出をリストから削除できます。
+- **AI によるアドバイス生成**: 記録された支出データに基づいて、Ollama (gemma3n:e2b モデル) が家計改善のアドバイスを生成します。
+- **ダークモード/ライトモード対応**: OS の設定に応じて自動的にテーマが切り替わります。
+
+## 使用技術
+
+- **フレームワーク**: Vue 3
+- **ビルドツール**: Vite
+- **言語**: TypeScript
+- **データ永続化**: IndexedDB (idb ライブラリを使用)
+- **AI 連携**: Ollama (ローカル LLM 実行環境)
+
+## セットアップ
+
+### 1. プロジェクトのクローン
+
+```bash
+git clone <リポジトリのURL> # もしGitリポジトリの場合
+cd expense-tracker
+```
+
+### 2. 依存関係のインストール
+
+プロジェクトディレクトリに移動し、必要な依存関係をインストールします。
+
+```bash
+npm install
+```
+
+### 3. Ollama のセットアップ
+
+AI アドバイス機能を利用するには、ローカルに Ollama をセットアップし、`gemma3n:e2b` モデルをダウンロードしておく必要があります。
+
+1.  **Ollama のインストール**: 公式サイトからお使いの OS に合った Ollama をインストールしてください。
+    [Ollama 公式サイト](https://ollama.com/)
+
+2.  **モデルのダウンロード**: ターミナルで以下のコマンドを実行し、`gemma3n:e2b` モデルをダウンロードします。
+
+    ```bash
+    ollama pull gemma3n:e2b
+    ```
+
+3.  **Ollama の起動**: Ollama がバックグラウンドで実行されていることを確認してください。通常、インストール後に自動的に起動しますが、もし起動していない場合は手動で起動してください。
+    （Ollama API はデフォルトで `http://localhost:11434` で動作します。）
+
+### 4. 開発サーバーの起動
+
+```bash
+npm run dev
+```
+
+ブラウザで `http://localhost:5173` (またはターミナルに表示される URL) にアクセスすると、アプリケーションが表示されます。
+
+## 使い方
+
+1.  **支出の追加**: フォームに日付、カテゴリ、金額、メモを入力し、「Add Expense」ボタンをクリックします。
+2.  **支出の確認**: 記録された支出がリストに表示されます。
+3.  **支出の削除**: 各支出の横にある「Delete」ボタンをクリックすると、その支出を削除できます。
+4.  **アドバイスの生成**: 「Generate Advice」ボタンをクリックすると、現在の支出データに基づいて Ollama がアドバイスを生成し、ダイアログで表示されます。
+
+## 今後の拡張案
+
+- 支出データの編集機能
+- 期間ごとの集計レポート
+- カテゴリごとのグラフ表示
+- データのインポート/エクスポート機能
+- 他のストレージオプション (例: Firebase, Supabase など)
